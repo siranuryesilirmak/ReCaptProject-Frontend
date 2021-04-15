@@ -1,5 +1,22 @@
-<table class="table">
-    <tr>
 
+  <div  *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+<table *ngIf="dataLoaded==true" class="table">
+    <thead>
+        <tr> 
+            <th>MARKA</th>
+            <th>RENK</th>
+            <th>MODEL YILI</th>
+            <th>KİRALAMA GÜNLÜK FİYAT</th>
+            <th>AÇIKLAMA</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let car of cars">
+        <td>{{car.brandName}}</td>
+        <td>{{car.colorName}}</td>
+        <td>{{car.modelYear}}</td>
+        <td>{{car.dailyPrice}}</td>
+        <td>{{car.description}}</td>
     </tr>
 </table>
