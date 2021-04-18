@@ -10,13 +10,17 @@
             <th>MODEL YILI</th>
             <th>KİRALAMA GÜNLÜK FİYAT</th>
             <th>AÇIKLAMA</th>
+            <th></th>
+
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
+    <tr *ngFor="let car of carDetails"   >
         <td>{{car.brandName}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
         <td>{{car.dailyPrice}}</td>
         <td>{{car.description}}</td>
+        <td><button  type="button" routerLink="/cars/cardetail/{{car.carId}}" class="btn btn-success">
+          Görüntüle</button></td>
     </tr>
 </table>
