@@ -2,25 +2,73 @@
   <div  *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
   </div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <tr> 
-            <th>MARKA</th>
-            <th>RENK</th>
-            <th>MODEL YILI</th>
-            <th>KİRALAMA GÜNLÜK FİYAT</th>
-            <th>AÇIKLAMA</th>
+
+  <div class="form-group">
+    <label for="filterText">Marka Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="arama ifadesi giriniz.">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-primary">
+    {{filterText}} aradınız.
+  </div> 
+
+  <div class="container">
+    <div class = "row">
+      <div class="col-md-3" >
+        <select  [(ngModel)]="brandFilter"  class="form-select" aria-label="Markalar">
+          <option  [selected]="IsCurrentBrandNull()" [value]="undefined" disabled selected>Marka seçiniz.</option>
+          <option *ngFor="let carDetail of carDetails" value="{{carDetail.brandId}}" selected="{{getSelectedBrand(carDetail.brandId)}}">{{carDetail.brandName}}</option>
+        </select>
+      </div>
+      <div class="col-md-3" >
+        <select [(ngModel)]="colorFilter" class="form-select" aria-label="Renkler">
+          <option [selected]="IsCurrentColorNull()" [value]="undefined"  disabled selected>Renk seçiniz..</option>
+          <option *ngFor="let carDetail of carDetails" value="{{carDetail.colorId}}" selected="{{getSelectedColor(carDetail.colorId)}}">{{carDetail.colorName}}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+    
+        <a routerLink="{{getRouterLink()}}"  class="btn btn-info" style="background-color: rgba(50, 168, 20, 0.815);">Fitrele</a>
+      </div> 
+      <div class="col-md-2">
+          <a routerLink="/cars" class="btn btn-info" style="background-color: 	rgba(165, 13, 13, 0.966);">Temizle</a>
+      </div>    
+     </div>
+  </div>  
+ 
+
+  <div class="card">
+    <div class="card-header card-header-warning" >
+      <h4 class="card-title">Kiralık Arabalar</h4>
+      <p class="card-category">Buradaki arabalar günlük kiralanabilir.</p>
+    </div>
+    <div class="card-content table-responsive table-full-width">
+      <table class="table">
+        <thead class="text-danger">
+          <tr> 
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">MARKA</th>
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">RENK</th>
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">MODEL YILI</th>
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">KİRALAMA FİYATI</th>
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">KDV'Lİ FİYAT</th>
+            <th style="color: rgb(16, 78, 129); border-radius: 10px">AÇIKLAMA</th>
             <th></th>
 
         </tr>
-    </thead>
-    <tr *ngFor="let car of carDetails"   >
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-        <td><button  type="button" routerLink="/cars/cardetail/{{car.carId}}" class="btn btn-success">
-          Görüntüle</button></td>
-    </tr>
-</table>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of carDetails |filterPipe:filterText"   >
+            <td>{{car.brandName |uppercase}}</td>
+            <td>{{car.colorName |lowercase}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{{car.dailyPrice |currency}} TL</td>
+            <td>{{car.dailyPrice |vatAdded:18 |currency}} TL</td>
+            <td>{{car.description |lowercase}} </td>
+            <td><button type="button" routerLink="/cars/cardetail/{{car.carId}}" class="btn btn-success">
+              Görüntüle</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+      
+

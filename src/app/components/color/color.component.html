@@ -1,6 +1,13 @@
+<div class="form-group">
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Renk ara">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-primary">
+    {{filterText}} aradınız.
+  </div>
 
 <ul class="list-group" >
-    <li (click)="setCurrentColor(color)" routerLink ="/cars/color/{{color.id}}" *ngFor="let color of colors"
+    <li (click)="setCurrentColor(color)" routerLink ="/cars/color/{{color.id}}"
+     *ngFor="let color of colors | colorPipe:filterText" 
      [class]="getCurrentColorClass(color)" >{{color.name}}</li>  
   </ul>
   
