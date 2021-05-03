@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -21,6 +21,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { ColorPipePipe } from './pipes/color-pipe.pipe';
 import { BrandPipePipe } from './pipes/brand-pipe.pipe';
+import { RentalPageComponent } from './components/rental-page/rental-page.component';
+import { DatePipe } from '@angular/common';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 
 
@@ -39,7 +43,10 @@ import { BrandPipePipe } from './pipes/brand-pipe.pipe';
     CartSummaryComponent,
     ColorPipePipe,
     BrandPipePipe,
+    RentalPageComponent,
+    CarAddComponent,
     
+   
     
   ],
   imports: [
@@ -47,12 +54,15 @@ import { BrandPipePipe } from './pipes/brand-pipe.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     })
+    ,
   ],
-  providers: [],
+  providers: [ DatePipe,
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

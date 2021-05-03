@@ -25,4 +25,8 @@ export class CartSummaryComponent implements OnInit {
     this.toastrService.error("Sepetten silindi")
     this.cartService.removeFromCart(carDetail)
   }
+
+  goToCart(carDetail:CarDetail){
+    
+  }
 }

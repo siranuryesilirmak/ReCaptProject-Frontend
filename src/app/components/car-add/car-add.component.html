@@ -1,0 +1,38 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+               <h5 class="title">Araba ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm">
+                    <div class="form-group">
+                        <input type="text" 
+                        id="brandName" 
+                        formControlName="brandName" 
+                        class="form-control" placeholder="Araba markası"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="colorName" formControlName="colorName" 
+                        class="form-control" placeholder="Arabanın rengi"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="dailyPrice" formControlName="dailyPrice" 
+                        class="form-control" placeholder="Kiralama fiyatı"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="description" formControlName="description" 
+                        class="form-control" placeholder="Ayrıntılar"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="modelYear" formControlName="modelYear" 
+                        class="form-control" placeholder="Model yılı"/>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>

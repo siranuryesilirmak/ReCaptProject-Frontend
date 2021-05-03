@@ -4,13 +4,13 @@
       Sepet
     </a>
     <div  class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li *ngFor ="let cartItem of cartItem"  ><a class="dropdown-item" >
+      <li *ngFor ="let cartItem of cartItem" ><a class="dropdown-item" >
         <span class="badge badge-light">{{cartItem.quantity}}</span>
-        {{cartItem.carDetail.brandName}} <span (click)="removeFromCart(cartItem.carDetail)" class="badge badge-light">Sil</span></a></li>
+        {{cartItem.carDetail.brandName}} <span    class="badge badge-light"> Kirala </span> <span (click)="removeFromCart(cartItem.carDetail)" class="badge badge-light">Sil</span></a>
+      </li>
       <div class="dropdown-divider"></div>
-      <a *ngIf="cartItem.length>0" class="dropdown-item" href="#">Sepete git</a>
+      <a *ngIf="cartItem.length>0"
+        class="dropdown-item" href="#">Sepete git</a>
       <h6 *ngIf="!cartItem.length" >Sepetiniz boş.</h6>
     </div>
   </li>
-  
-  
