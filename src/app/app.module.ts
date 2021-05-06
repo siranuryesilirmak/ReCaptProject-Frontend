@@ -21,10 +21,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { ColorPipePipe } from './pipes/color-pipe.pipe';
 import { BrandPipePipe } from './pipes/brand-pipe.pipe';
-import { RentalPageComponent } from './components/rental-page/rental-page.component';
 import { DatePipe } from '@angular/common';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -43,8 +43,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     CartSummaryComponent,
     ColorPipePipe,
     BrandPipePipe,
-    RentalPageComponent,
     CarAddComponent,
+    LoginComponent,
     
    
     

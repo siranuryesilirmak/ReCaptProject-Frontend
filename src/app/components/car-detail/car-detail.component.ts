@@ -21,7 +21,7 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  carDetail : CarDetail[]=[] 
+  carDetail : CarDetail[]=[];
   carImages : CarImage[]=[]
   dataLoaded=false
   currentCar:CarDetail;

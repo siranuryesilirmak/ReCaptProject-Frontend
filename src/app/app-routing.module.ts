@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarComponent } from './components/car/car.component';
-import { RentalPageComponent } from './components/rental-page/rental-page.component';
+import { LoginComponent } from './components/login/login.component';
+
 import { RentalComponent } from './components/rental/rental.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"",pathMatch:"full", component:CarComponent},
@@ -20,13 +22,15 @@ const routes: Routes = [
   {path:"cars/cardetail/:carId",component:CarDetailComponent},
   {path:"car/:id",component:CarDetailComponent},
   {path:"rentals/customer/:customerid",component:RentalComponent},
-  {path:"rentals/filter/:carId",component:RentalPageComponent},
+  
 
   {path:"cars/filter/brand/:brandId",component:CarComponent},
   {path:"cars/filter/color/:colorId",component:CarComponent},
   {path:"cars/filter/brand/:brandId/color/:colorId",component:CarComponent},
 
-  {path:"cars/add",component:CarAddComponent},
+  {path:"cars/add",component:CarAddComponent,canActivate:[LoginGuard]},
+  {path:"login",component:LoginComponent},
+
 
 
 ];
